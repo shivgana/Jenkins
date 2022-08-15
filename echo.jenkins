@@ -1,0 +1,25 @@
+pipeline {
+  agent any
+  stages {
+    stage("Intial Stage"){
+      step{
+        sh echo "Intial Stage execution"
+      }
+    }
+    stage("Check Java available"){
+      script{
+        check_java=`java`
+        if [ "$check_java" != "" ]; then
+          echo "Java tool available"
+        else
+          echo "Java Not available"
+        fi
+      }
+    }
+    stage("Final Stage"){
+      step{
+        sh echo "Final Stage, Execution completed"
+      }
+    }
+  }
+}
